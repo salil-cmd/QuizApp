@@ -64,25 +64,22 @@ const loadQuestion = () => {
 }
 loadQuestion();
 
+
+let attempted = false;
 const markedOption = () => {
 
     let userMarkedOption;
-    let ifattempted = false;
 
     answers.forEach((curAnsElement) => {
         if (curAnsElement.checked) {
             userMarkedOption = curAnsElement.id;
-            ifattempted = true;
+            attempted = true;
         }
 
-        
-        
+
+
     });
 
-    if(!ifattempted){
-        console.log("not attempted")
-    }
-    
     return userMarkedOption;
 
 };
@@ -91,43 +88,55 @@ const deselectAll = () => {
     answers.forEach((curAnsElement) => curAnsElement.checked = false); //
 }
 
+let alertDiv = document.querySelector("#alert-div")
+const showAlert = () => {
+    alertDiv.style.visibility = "visible"
+}
+
 let score = 0;
 submit.addEventListener('click', () => {
     const checkedAnswer = markedOption();
     console.log(checkedAnswer);
-    
-    if (checkedAnswer == quizDB[questionCount].ans) {
-        score++;
-        scoreCount.innerText = score
-    };
+    console.log(attempted)
+    if (!attempted) {
+        showAlert();
+    }
+    else {
+        alertDiv.style.visibility =  'hidden'
+        attempted = false
+        if (checkedAnswer == quizDB[questionCount].ans) {
+            score++;
+            scoreCount.innerText = score
+        };
 
-    questionCount++;
+        questionCount++;
 
-    deselectAll();
+        deselectAll();
 
-    if (questionCount < quizDB.length) {
-        loadQuestion();
-    } else {
-        if (score == quizDB.length) {
-            showScore.innerHTML = `
-
-             <h3> <b>Congratulations!!<b> You scored 100%</h3>
-             <button class="btn" onclick="location.reload()">Play Again</button> `;
-
+        if (questionCount < quizDB.length) {
+            loadQuestion();
         } else {
-            showScore.innerHTML = `
+            if (score == quizDB.length) {
+                showScore.innerHTML = `
+    
+                 <h3> <b>Congratulations!!<b> You scored 100%</h3>
+                 <button class="btn" onclick="location.reload()">Play Again</button> `;
 
-             <h3> You scored ${score}/${quizDB.length}</h3>
-             <button class="btn" onclick="location.reload()">Play Again</button> `;
+            } else {
+                showScore.innerHTML = `
+    
+                 <h3> You scored ${score}/${quizDB.length}</h3>
+                 <button class="btn" onclick="location.reload()">Play Again</button> `;
+
+            }
+
+
+
+            showScore.classList.remove('scoreArea');
+            submit.style.display = "none"
+            contentDiv.style.display = "none"
+            scoreCountDiv.style.display = 'none'
 
         }
-
-
-
-        showScore.classList.remove('scoreArea');
-        submit.style.display = "none"
-        contentDiv.style.display = "none"
-        scoreCountDiv.style.display = 'none'
-
     }
 });

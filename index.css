@@ -49,7 +49,7 @@ body {
     list-style: none;
 }
 
-input {
+label {
     cursor: pointer;
 }
 
@@ -65,7 +65,7 @@ input {
     text-transform: uppercase;
     color: #fff;
     background-color: #74b9ff;
-    margin-top: 4rem;
+    margin-top: 2rem;
 
 }
 
@@ -111,6 +111,14 @@ input {
     font-size: 1.2rem;
 }
 
+#alert-div{
+    color: red;
+    font-size: 1.5rem;
+    margin-top: 1rem;
+    visibility: hidden;
+}
+
+
 @media(max-width: 1260px) and (min-width: 990px) {
     html {
         font-size: 60%;
@@ -126,12 +134,6 @@ input {
     }
 }
 
-/* @media(max-width: 989px) and (min-width: 910px){
-    #score-div{
-        width: 7vw;
-        height: 11vh;
-    }
-} */
 
 @media(max-width: 990px) and (min-width: 820px) {
     html {
