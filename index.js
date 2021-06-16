@@ -47,6 +47,7 @@ const showScore = document.querySelector('#showScore')
 const contentDiv = document.querySelector(".content-div")
 const scoreCountDiv = document.querySelector("#score-div")
 const scoreCount = document.querySelector("#score-count")
+const statusDiv = document.querySelector('#status-div')
 
 let questionCount = 0;
 
@@ -93,6 +94,8 @@ const showAlert = () => {
     alertDiv.style.visibility = "visible"
 }
 
+statusDiv.innerHTML = `Question ${questionCount + 1} of ${quizDB.length}`
+
 let score = 0;
 submit.addEventListener('click', () => {
     const checkedAnswer = markedOption();
@@ -102,6 +105,7 @@ submit.addEventListener('click', () => {
         showAlert();
     }
     else {
+        statusDiv.innerHTML = `Question ${questionCount + 2} of ${quizDB.length}`
         alertDiv.style.visibility =  'hidden'
         attempted = false
         if (checkedAnswer == quizDB[questionCount].ans) {
@@ -136,7 +140,7 @@ submit.addEventListener('click', () => {
             submit.style.display = "none"
             contentDiv.style.display = "none"
             scoreCountDiv.style.display = 'none'
-
+            statusDiv.style.display = "none"
         }
     }
 });
