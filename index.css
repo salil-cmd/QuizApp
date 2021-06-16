@@ -12,6 +12,12 @@ html {
     font-size: 62.5%;
 }
 
+
+body {
+    width: 100vw;
+    max-height: 100vh;
+}
+
 .main-div {
     width: 100vw;
     min-height: 100vh;
@@ -266,12 +272,12 @@ input {
 
 @media(max-width: 410px) {
     html {
-        font-size: 45%;
+        font-size: 55%;
         /* color: red; */
     }
 
     .inner-div {
-        width: 70vw;
+        width: 85vw;
         padding: 3rem 3rem;
     }
 
@@ -285,7 +291,7 @@ input {
         width: fit-content;
         height: 8vh;
         border-radius: 1rem;
-        padding: 1rem;
+        padding: 0.2rem 1.5rem;
     }
 
     #score-div>p:first-child {
